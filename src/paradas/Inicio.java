@@ -132,14 +132,13 @@ public class Inicio {
             if (count==0)
                 grafo.adicionaArestas(0, 0, 0.0);
             else
-            {
-                
+            {                
                 Coordenadas coo = _listaCoordenada.get(count-1);                
                 double firstLatToRad = Math.toRadians(Double.parseDouble(coordenada.getLatitude().substring(0,10).replace(",", ".")) );//firstLatitude);
                 double secondLatToRad = Math.toRadians(Double.parseDouble(coo.getLatitude().substring(0,10).replace(",", ".")));//secondLatitude);
                 double deltaLongitudeInRad = Math.toRadians(Double.parseDouble(coo.getLongitude().substring(0,10).replace(",", "."))- Double.parseDouble(coordenada.getLongitude().substring(0,10).replace(",", ".")));//secondLongitude- firstLongitude);
                 double distancia = (Math.acos(((Math.cos(firstLatToRad) * Math.cos(secondLatToRad) * Math.cos(deltaLongitudeInRad)) + (Math.sin(firstLatToRad) * Math.sin(secondLatToRad)))) * 6378.137);
-                System.out.println("ditancia: " + distancia);                
+                System.out.println("Linha: "+ coo.getIdLinha() + " Aresta: ["+ (count-1) +" a "+ count +"] ditancia: " + distancia);                
                 //grafo.adicionaArestas((int)coordenada.getId(), (int)coo.getId(), distancia);
                 grafo.adicionaArestas(count-1, count, distancia);
             }            
