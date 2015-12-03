@@ -4,7 +4,7 @@ package paradas;
  *
  * @author Elisiandro
  */
-public class Coordenadas {
+public class Coordenadas implements Comparable{
     private double id;
     private String latitude;
     private String longitude;
@@ -76,6 +76,14 @@ public class Coordenadas {
     @Override
     public String toString() {
         return "Coordenadas{" + "id=" + id + ", latitude=" + latitude + ", longitude=" + longitude + ", idLinha=" + idLinha + '}';
+    }
+
+    @Override
+    public int compareTo(Object t) {
+         double id=((Coordenadas)t).getId();
+        
+        return (int) (this.id-id);
+
     }
     
     
