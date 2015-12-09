@@ -18,9 +18,11 @@ import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
+import java.lang.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Scanner;
+import java.util.Stack;
 
 /**
  *
@@ -48,27 +50,39 @@ public class Inicio {
     static Inicio obj;
     static FileWriter arq;
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws IOException {
+        
+        Scanner acan = new Scanner(System.in);
+        StringBuilder strBuider = new StringBuilder();
+        
+        strBuider.append(String.format("#########################################%n"));
+        strBuider.append(String.format("#              DATA POA                 #%n"));
+        strBuider.append(String.format("#      Insira os dados correntamente    #%n"));
+        strBuider.append(String.format("#########################################%n"));
+        
+        System.out.println(strBuider.toString());
+        System.out.print("Digite a parada inicial: ");
+        int paradaInicial = acan.nextInt(); //833
+        
+        System.out.print("Digite a parada Final: ");
+        int paradaFinal = acan.nextInt();//218
+        
         //Os Arquivos estao na raiz do projeto        
         String caminhoLinhas = "linhas.csv";
         obj = new Inicio();
         obj.runLinhas(caminhoLinhas);
 
-        String caminhoParadas = "paradas.csv";
-        //obj = new Inicio();
+        String caminhoParadas = "paradas.csv";        
         obj.runParadas(caminhoParadas);
 
-        String caminhoLinhasParada = "paradalinha.csv";
-        //obj = new Inicio();
+        String caminhoLinhasParada = "paradalinha.csv";        
         obj.runLinhasParadas(caminhoLinhasParada);
 
-        String caminhoCoordenadas = "coordenadas.csv";
-        //obj = new Inicio();
+        String caminhoCoordenadas = "coordenadas.csv";        
         obj.runCoordenadas(caminhoCoordenadas);
 
-        int paradaInicial = 883;        
-        int paradaFinal = 218;
+               
+        
 
         //Lista as paradas e monta os vertices
         Grafo grafo = new Grafo();
@@ -106,7 +120,25 @@ public class Inicio {
         }
         
         //Filtra todas as coordenadas da linha de onibus que o usuario escolheu.
-        int linhaEscolhida = 128036;
+        //int linhaEscolhida = 128036;
+        strBuider = new StringBuilder();        
+        strBuider.append(String.format("#########################################%n"));        
+        strBuider.append(String.format("LINHAS:                                  %n"));        
+        String xxx= "";        
+        for (LinhaParada linhaParada : _listaLinhaParada) {
+            if (xxx.isEmpty())
+                xxx += linhaParada.getIdLinha();
+            else
+                xxx += ";"+linhaParada.getIdLinha(); 
+        }        
+        
+        strBuider.append(xxx+"\n");        
+        strBuider.append(String.format("#########################################%n"));
+        
+        System.out.print(strBuider.toString());
+        System.out.print("Escolha a Linha de onibus acima: ");
+        int linhaEscolhida = acan.nextInt();
+        
         _listaCoordenada = new ArrayList<>();
         Collections.sort(listaCoordenada);
         int count = 0;
